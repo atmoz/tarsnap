@@ -15,15 +15,15 @@ which can be used directly or via shell scripts.
 
 ## Usage
 
-- Mount your key file in /tarsnap/key.
-- Mount your backup directory in /backup.
-- Run tarsnap commands
+- Mount your key file as /tarsnap/key.
+- Mount your backup directory as /backup.
+- Run tarsnap commands.
 
 ## Example
 
 ```
-
 docker run \
-    -v /host/key:/tarsnap/key \
-    -v /host/backup:/backup \
+    -v /host/key:/tarsnap/key:ro \
+    -v /host/backup:/backup:ro \
     --rm tarsnap -c -f mybackup /backup
+```
