@@ -11,7 +11,7 @@ OpenIndiana, Cygwin, and probably many other UNIX-like operating systems. The
 Tarsnap client code provides a flexible and powerful command-line interface
 which can be used directly or via shell scripts.
 
-(http://www.tarsnap.com/)[http://www.tarsnap.com/]
+[http://www.tarsnap.com/](http://www.tarsnap.com/)
 
 ## Usage
 
