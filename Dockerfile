@@ -40,6 +40,8 @@ RUN useradd --system --user-group --home-dir /tarsnap tarsnap && \
 WORKDIR /tarsnap
 USER tarsnap
 
+COPY tarsnap.conf /tarsnap/.tarsnaprc
+
 VOLUME ["/tarsnap"]
 
 CMD ["/bin/bash", "-c", "echo 'Available commands: ' && compgen -ca | grep tarsnap | sort"]
