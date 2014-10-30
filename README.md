@@ -25,5 +25,5 @@ which can be used directly or via shell scripts.
 docker run \
     -v /host/key:/tarsnap/key:ro \
     -v /host/backup:/backup:ro \
-    --rm tarsnap -c -f mybackup /backup
+    --rm atmoz/tarsnap tarsnap -c -f mybackup /backup
 ```
