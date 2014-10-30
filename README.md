@@ -1,4 +1,4 @@
-# tarsnap
+# tarsnap [![Docker Build Status](http://hubstatus.container42.com/atmoz/tarsnap)](https://registry.hub.docker.com/u/atmoz/tarsnap)
 
 Tarsnap Docker image
 
