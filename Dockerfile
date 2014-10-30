@@ -1,6 +1,8 @@
 FROM debian:wheezy
 MAINTAINER Adrian Dvergsdal [atmoz.net]
 
+ENV DEBIAN_FRONTEND noninteractive
+
 ENV TARSNAP_VERSION 1.0.35
 
 ENV TARSNAP_MAKE_PACKAGES \
@@ -15,7 +17,7 @@ ENV TARSNAP_RUN_PACKAGES \
     openssl
 
 RUN apt-get update && \
-    DEBIAN_FRONTEND=noninteractive apt-get -y install $TARSNAP_RUN_PACKAGES $TARSNAP_MAKE_PACKAGES && \
+    apt-get -y install $TARSNAP_RUN_PACKAGES $TARSNAP_MAKE_PACKAGES && \
     \
     cd /root && \
     wget -O - https://www.tarsnap.com/download/tarsnap-autoconf-$TARSNAP_VERSION.tgz | tar zxf - && \
@@ -25,8 +27,8 @@ RUN apt-get update && \
     cd .. && \
     rm -R tarsnap-autoconf-$TARSNAP_VERSION && \
     \
-    DEBIAN_FRONTEND=noninteractive apt-get -y remove --purge $TARSNAP_MAKE_PACKAGES && \
-    DEBIAN_FRONTEND=noninteractive apt-get -y autoremove && \
+    apt-get -y remove --purge $TARSNAP_MAKE_PACKAGES && \
+    apt-get -y autoremove && \
     rm -rf /var/lib/apt/lists/* && \
     apt-get clean
 
