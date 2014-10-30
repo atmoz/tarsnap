@@ -1,6 +1,6 @@
 # tarsnap [![Docker Build Status](http://hubstatus.container42.com/atmoz/tarsnap)](https://registry.hub.docker.com/u/atmoz/tarsnap)
 
-Tarsnap Docker image
+*Online backups for the truly paranoid*
 
 ## What is Tarsnap?
 
@@ -9,9 +9,9 @@ OpenIndiana, Cygwin, and probably many other UNIX-like operating systems. The
 Tarsnap client code provides a flexible and powerful command-line interface
 which can be used directly or via shell scripts.
 
-> [http://www.tarsnap.com/](http://www.tarsnap.com/)
+> [tarsnap.com](http://www.tarsnap.com/)
 
-![https://www.tarsnap.com/header.png](https://www.tarsnap.com/header.png)
+![Tarsnap](https://www.tarsnap.com/header.png)
 
 ## Usage
 
