@@ -1,9 +1,8 @@
 FROM debian:wheezy
 MAINTAINER Adrian Dvergsdal [atmoz.net]
 
-ENV DEBIAN_FRONTEND noninteractive
-
 ENV TARSNAP_VERSION 1.0.35
+ENV TARSNAP_SHA256 6c9f6756bc43bc225b842f7e3a0ec7204e0cf606e10559d27704e1cc33098c9a
 
 ENV TARSNAP_MAKE_PACKAGES \
     wget \
@@ -16,31 +15,8 @@ ENV TARSNAP_MAKE_PACKAGES \
 ENV TARSNAP_RUN_PACKAGES \
     openssl
 
-RUN apt-get update && \
-    apt-get -y install $TARSNAP_RUN_PACKAGES $TARSNAP_MAKE_PACKAGES && \
-    \
-    cd /root && \
-    wget -O - https://www.tarsnap.com/download/tarsnap-autoconf-$TARSNAP_VERSION.tgz | tar zxf - && \
-    cd tarsnap-autoconf-$TARSNAP_VERSION && \
-    ./configure && \
-    make all install clean && \
-    cd .. && \
-    rm -R tarsnap-autoconf-$TARSNAP_VERSION && \
-    \
-    apt-get -y remove --purge $TARSNAP_MAKE_PACKAGES && \
-    apt-get -y autoremove && \
-    rm -rf /var/lib/apt/lists/* && \
-    apt-get clean
-
-RUN useradd --system --user-group --home-dir /tarsnap tarsnap && \
-    mkdir /tarsnap && \
-    touch /tarsnap/.not-empty && \
-    chown -R tarsnap:tarsnap /tarsnap
-
-WORKDIR /tarsnap
-USER tarsnap
-
-COPY tarsnap.conf /tarsnap/.tarsnaprc
+COPY . /
+RUN /install
 
 VOLUME ["/tarsnap"]
 

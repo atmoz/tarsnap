@@ -1,0 +1,34 @@
+#!/bin/bash
+set -e
+
+cd /root
+
+export DEBIAN_FRONTEND=noninteractive 
+
+# Install dependencies
+apt-get update
+apt-get -y install $TARSNAP_RUN_PACKAGES $TARSNAP_MAKE_PACKAGES
+
+# Download and verify
+wget https://www.tarsnap.com/download/tarsnap-autoconf-$TARSNAP_VERSION.tgz
+hash="$(sha256sum tarsnap-autoconf-$TARSNAP_VERSION.tgz | cut -d " " -f1)"
+if [ "$hash" != "$TARSNAP_SHA256" ]; then
+    echo "Tarball downloaded from tarsnap.com failed hash check!"
+    exit 1
+fi
+
+# Install tarsnap
+tar zxf tarsnap-autoconf-$TARSNAP_VERSION.tgz
+cd tarsnap-autoconf-$TARSNAP_VERSION
+./configure
+make all install clean
+cd ..
+
+# Clean up
+rm -R tarsnap-autoconf-$TARSNAP_VERSION
+apt-get -y remove --purge $TARSNAP_MAKE_PACKAGES
+apt-get -y autoremove
+rm -rf /var/lib/apt/lists/*
+
+# Self-destruct
+rm "${BASH_SOURCE[0]}"
