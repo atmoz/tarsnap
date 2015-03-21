@@ -1,9 +1,9 @@
 #!/bin/bash
 set -e
 
-cd /root
-
 export DEBIAN_FRONTEND=noninteractive 
+
+cd /root
 
 # Install dependencies
 apt-get update
@@ -25,7 +25,8 @@ make all install clean
 cd ..
 
 # Clean up
-rm -R tarsnap-autoconf-$TARSNAP_VERSION
+rm -f tarsnap-autoconf-$TARSNAP_VERSION.tgz
+rm -rf tarsnap-autoconf-$TARSNAP_VERSION
 apt-get -y remove --purge $TARSNAP_MAKE_PACKAGES
 apt-get -y autoremove
 rm -rf /var/lib/apt/lists/*
