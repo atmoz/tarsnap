@@ -13,10 +13,15 @@ ENV TARSNAP_MAKE_PACKAGES \
     e2fslibs-dev
 
 ENV TARSNAP_RUN_PACKAGES \
+    locales \
     openssl
 
 COPY . /
 RUN /install
+
+ENV LANG     en_US.UTF-8
+ENV LANGUAGE en_US.UTF-8
+ENV LC_ALL   en_US.UTF-8
 
 VOLUME ["/tarsnap"]
 

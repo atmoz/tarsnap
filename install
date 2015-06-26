@@ -9,6 +9,9 @@ cd /root
 apt-get update
 apt-get -y install $TARSNAP_RUN_PACKAGES $TARSNAP_MAKE_PACKAGES
 
+echo en_US.UTF-8 UTF-8 > /etc/locale.gen
+locale-gen
+
 # Download and verify
 wget https://www.tarsnap.com/download/tarsnap-autoconf-$TARSNAP_VERSION.tgz
 hash="$(sha256sum tarsnap-autoconf-$TARSNAP_VERSION.tgz | cut -d " " -f1)"
