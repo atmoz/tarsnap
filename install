@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-export DEBIAN_FRONTEND=noninteractive 
+export DEBIAN_FRONTEND=noninteractive
 
 cd /root
 
@@ -22,10 +22,11 @@ fi
 
 # Install tarsnap
 tar zxf tarsnap-autoconf-$TARSNAP_VERSION.tgz
-cd tarsnap-autoconf-$TARSNAP_VERSION
+(
+cd tarsnap-autoconf-$TARSNAP_VERSION || exit
 ./configure
 make all install clean
-cd ..
+)
 
 # Clean up
 rm -f tarsnap-autoconf-$TARSNAP_VERSION.tgz
